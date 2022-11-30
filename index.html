@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .card0,.card1,.card2,.card3{
+            border: 5px solid red;
+            height: 20vh;
+            width: 30vw;
+        }
+        .card{
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+   <nav>
+    <div class="navbar">
+       <span>Md Arif's weather App</span> <input id="city" type="text" value="London">
+    <button class="btn" onclick="getcity()">search</button>
+    </div>
+</nav>
+<br>
+<main>
+    <div class="card">
+    <div class="card0">
+<p id="description0">data</p>
+<p id="temperature0">temp</p>
+<p id="pressure0">pressure</p>
+<p id="dataage0">data age</p>
+
+    </div>
+    <div class="card1">
+        <p id="description1">data</p>
+        <p id="temperature1">temp</p>
+        <p id="pressure1">pressure</p>
+        <p id="dataage1">data age</p>
+        
+            </div>
+            <div class="card2">
+                <p id="description2">data</p>
+                <p id="temperature2">temp</p>
+                <p id="pressure2">pressure</p>
+                <p id="dataage2">data age</p>
+                
+                    </div>
+
+                    <div class="card3">
+                        <p id="description3">data</p>
+                        <p id="temperature3">temp</p>
+                        <p id="pressure3">pressure</p>
+                        <p id="dataage3">data age</p>
+                        
+                            </div>
+             </div>                   
+    
+<br>
+    <select  id="sel" onchange="option()">
+        
+        <option value="0">London</option>
+        <option value="1">Los Angeles</option>
+        <option value="2">New York</option>
+        <option value="3">Las Vegas</option>
+    </select>
+    <button id="weather" onclick="getweather()">get Weather</button>
+</main>
+<script>
+    let cityRes="London"
+  let city=  document.getElementById("city")
+  let sel=document.getElementById("sel")
+//   city.innerHTML=sel.value
+  console.log(sel.value)
+ cityRes = sel.value
+  console.log(cityRes)
+  function getweather(){
+
+      let url = `https://python3-dot-parul-arena-2.appspot.com/test?cityname=${cityRes}`
+      fetch(url).then((response)=>response.json()).then((data)=>{
+        let date= new Date().getDay()
+        console.log(date)
+          console.log(data)
+          if(city.value=="London"){
+
+              description0.innerHTML=`Description:${data.description}`
+              temperature0.innerHTML=`Temperature(*C)    ${data.temp_in_celsius}`
+              pressure0.innerHTML=`Pressure:${data.pressure_in_hPa}`
+              dataage0.innerHTML=`Data Age (No. of days): ${date}`
+          }
+          else if(city.value=="New York"){
+            description1.innerHTML=`Description:${data.description}`
+              temperature1.innerHTML=`Temperature(*C)    ${data.temp_in_celsius}`
+              pressure1.innerHTML=`Pressure:${data.pressure_in_hPa}`
+              dataage1.innerHTML=`Data Age (No. of days): ${date}`
+          }
+          else if(city.value== "Los Angeles"){
+            description2.innerHTML=`Description:${data.description}`
+              temperature2.innerHTML=`Temperature(*C)    ${data.temp_in_celsius}`
+              pressure2.innerHTML=`Pressure:${data.pressure_in_hPa}`
+              dataage2.innerHTML=`Data Age (No. of days): ${date}`
+
+          }
+          else if(city.value=="Las Vegas"){
+            description3.innerHTML=`Description:${data.description}`
+              temperature3.innerHTML=`Temperature(*C)    ${data.temp_in_celsius}`
+              pressure3.innerHTML=`Pressure:${data.pressure_in_hPa}`
+              dataage3.innerHTML=`Data Age (No. of days): ${date}`
+
+          }
+      })
+  }
+  function option(){
+    let res= sel.value
+    if(res==0){
+        cityRes="London"
+    }
+    else if(res==1){
+        cityRes="Los Angeles"
+    }
+    else if(res==2){
+        cityRes="New York"
+    }
+   else{
+    cityRes="Las Vegas"
+   }
+   city.innerHTML=cityRes
+  }
+   function getcity(){
+    let res= sel.value
+    if(res==0){
+        cityRes="London"
+
+    }
+    else if(res==1){
+        cityRes="Los Angeles"
+    }
+    else if(res==2){
+        cityRes="New York"
+    }
+   else{
+    cityRes="Las Vegas"
+   }
+   city.innerHTML=cityRes
+   }
+
+</script>
+</body>
+</html>
